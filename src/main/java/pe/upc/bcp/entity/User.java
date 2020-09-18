@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Setter
-@Getter
 @Data
 @Table(name = "users")
 public class User{
@@ -30,4 +28,5 @@ public class User{
     private Long phone;
     @OneToMany(mappedBy = "user")
     private List<Account> accounts = new ArrayList<Account>();
+
 }

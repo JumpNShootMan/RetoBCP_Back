@@ -11,10 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Setter
-@Getter
 @Data
-@Table(name = "operation_type")
+@Table(name = "operation_types")
 public class OperationType{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Setter
-@Getter
 @Data
 @Table(name = "accounts")
 public class Account{
@@ -27,7 +25,7 @@ public class Account{
     private User user;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_type_id", nullable = false)
-    @OnDelete(action= OnDeleteAction.CASCADE)
+    //@OnDelete(action= OnDeleteAction.CASCADE)
     private AccountType accountType;
     //MANY TO MANY
     @ManyToMany(fetch = FetchType.LAZY,
@@ -36,4 +34,8 @@ public class Account{
             },
             mappedBy = "accounts")
     private List<Operation> operations = new ArrayList<>();
+    //yo realizo una operación desde mi cuenta así que por eso tendré una notificación que podré visualizar al ingresar a mi cuenta
+    @OneToMany(mappedBy = "account")
+    private List<Notification> notifications=new ArrayList<Notification>();
+
 }

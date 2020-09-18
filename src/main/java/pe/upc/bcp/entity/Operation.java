@@ -14,16 +14,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Setter
-@Getter
 @Data
-@Table(name = "operation")
+@Table(name = "operations")
 public class Operation{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name= "detail")
     private String detail;
+    private String status;
     ////
     @ManyToMany(fetch= FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.MERGE,})
     @JoinTable(name = "operation_account",
@@ -33,7 +32,10 @@ public class Operation{
 ////
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "operation_type_id", nullable = false)
-    @OnDelete(action= OnDeleteAction.CASCADE)
+    //@OnDelete(action= OnDeleteAction.CASCADE)
     private OperationType operationType;
+
+
+
 
 }
