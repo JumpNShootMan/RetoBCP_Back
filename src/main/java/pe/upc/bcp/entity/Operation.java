@@ -25,17 +25,9 @@ public class Operation{
     private String status;
     ////
     @ManyToMany(fetch= FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.MERGE,})
-    @JoinTable(name = "operation_account",
+    @JoinTable(name = "operation_accounts",
             joinColumns = { @JoinColumn(name = "operation_id") },
             inverseJoinColumns = { @JoinColumn(name = "account_id") })
-    private List<Account> accounts = new ArrayList<>();
-////
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "operation_type_id", nullable = false)
-    //@OnDelete(action= OnDeleteAction.CASCADE)
-    private OperationType operationType;
-
-
-
+    private List<Account> accounts ;
 
 }

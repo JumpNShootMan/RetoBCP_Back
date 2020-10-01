@@ -1,3 +1,4 @@
+/*
 package pe.upc.bcp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pe.upc.bcp.entity.Account;
-import pe.upc.bcp.exception.AccountNotFoundException;
 import pe.upc.bcp.service.AccountService;
 
 import javax.validation.constraints.Min;
@@ -20,8 +20,8 @@ public class AccountController {
     private AccountService accountService;
 
     @GetMapping
-    public ResponseEntity<List<Account>> getAll(){return ResponseEntity.ok().body(accountService.getAllAccounts());}
 
+    public ResponseEntity<List<Account>> getAll(){return ResponseEntity.ok().body(accountService.getAllAccounts());}
     @GetMapping(value="/accounts/{id}")
     public ResponseEntity<Account> getById(@PathVariable("id") @Min(1) Long id){
         Account account= accountService.findById(id)
@@ -29,3 +29,4 @@ public class AccountController {
         return ResponseEntity.ok().body(account);
     }
 }
+*/

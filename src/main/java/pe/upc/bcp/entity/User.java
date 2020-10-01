@@ -3,6 +3,7 @@ package pe.upc.bcp.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,7 +27,13 @@ public class User{
     private String email;
     @Column(nullable = false)
     private Long phone;
-    @OneToMany(mappedBy = "user")
-    private List<Account> accounts = new ArrayList<Account>();
 
+    //
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "users_companies",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "company_id")})
+    @JsonIgnore
+    List<Account> accounts;
 }

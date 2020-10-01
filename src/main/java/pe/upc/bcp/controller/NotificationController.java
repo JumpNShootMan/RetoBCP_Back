@@ -1,18 +1,14 @@
+/*
 package pe.upc.bcp.controller;
 
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pe.upc.bcp.entity.Account;
 import pe.upc.bcp.entity.Notification;
-import pe.upc.bcp.exception.NotificationNotFoundException;
-import pe.upc.bcp.service.AccountService;
 import pe.upc.bcp.service.NotificationService;
 
 import javax.validation.constraints.Min;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/notifications")
@@ -42,4 +38,4 @@ public class NotificationController {
         //response.setData(this.convertEntityToDto(user.get()));
         //return ResponseEntity.ok().body(response);
     }
-}
+}*/
