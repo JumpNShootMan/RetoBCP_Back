@@ -24,5 +24,8 @@ public class OperationServiceImpl implements OperationService {
         return operationRepository.findAll();
     }
 
-    public Optional<Operation> getOperationByID(Long id){ return operationRepository.findById(id);}
+    @Override
+    public Optional<Operation> getOperationByID(Long id) {
+        return Optional.empty();
+    }
 }

@@ -30,4 +30,13 @@ public class Notification{
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Account account;
+    //
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "notification_category_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private NotificationCategory notificationCategory;
+
+    public void setAccount(Notification account) {
+    }
 }

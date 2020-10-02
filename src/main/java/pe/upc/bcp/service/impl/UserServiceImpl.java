@@ -6,7 +6,6 @@ import pe.upc.bcp.entity.User;
 import pe.upc.bcp.repository.UserRepository;
 import pe.upc.bcp.service.UserService;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,5 +24,8 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
-    public Optional<User> getUserByID(Long id) { return userRepository.findById(id);}
+    @Override
+    public Optional<User> getUserByID(Long id) {
+        return Optional.empty();
+    }
 }

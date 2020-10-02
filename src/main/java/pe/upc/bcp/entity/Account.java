@@ -42,4 +42,52 @@ public class Account{
     ///
     @OneToMany(mappedBy = "account")
     List<Notification> notifications;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public Double getInteres() {
+        return interes;
+    }
+
+    public void setInteres(Double interes) {
+        this.interes = interes;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public List<Operation> getOperation() {
+        return operation;
+    }
+
+    public void setOperation(List<Operation> operation) {
+        this.operation = operation;
+    }
+
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(List<Notification> notifications) {
+        this.notifications = notifications;
+    }
 }

@@ -14,7 +14,7 @@ public interface AccountService {
 
     Account getAccountById(Long accountId);
     Account createAccount(Account account);
-    Account updateCompany(Long accountId, Account accountRequest);
+    Account updateAccount(Long accountId, Account accountRequest);
     ResponseEntity<?> deleteAccount(Long accountId);
 
     //List<Account> getAllAccounts();
