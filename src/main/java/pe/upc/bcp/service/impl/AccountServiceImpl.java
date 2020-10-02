@@ -50,13 +50,14 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Account updateCompany(Long accountId, Account accountRequest) {
+    public Account updateAccount(Long accountId, Account accountRequest) {
         return accountRepository.findById(accountId).map(account -> {
             account.setInteres(accountRequest.getInteres());
             account.setTipo(accountRequest.getTipo());
             return accountRepository.save(account);
         }).orElseThrow(() -> new ResourceNotFoundException("Company", "Id", accountId));
     }
+
 
     @Override
     public ResponseEntity<?> deleteAccount(Long accountId) {

@@ -6,7 +6,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import pe.upc.bcp.entity.Account;
 import pe.upc.bcp.entity.Notification;
 import pe.upc.bcp.exception.ResourceNotFoundException;
 import pe.upc.bcp.repository.AccountRepository;
@@ -14,7 +13,7 @@ import pe.upc.bcp.repository.NotificationRepository;
 import pe.upc.bcp.service.NotificationService;
 
 import java.util.List;
-import java.util.Optional;
+
 @Service
 public class NotificationServiceImpl implements NotificationService {
     @Autowired
@@ -39,18 +38,23 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
     @Override
-    public Notification getNotificationById(Long notificationId) {
-        return notificationRepository.findById(notificationId)
-                .orElseThrow(() -> new ResourceNotFoundException("User", "Id", notificationId));
+    public Notification getNotificationByIdAccount(Long notificationId, Long accountId) {
+        return notificationRepository.findByIdAndAccountId(notificationId, accountId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Notification not found with Id " + notificationId +
+                                " AccountId " + accountId ));
     }
 
     @Override
-    public Notification createNotification(Notification notification) {
-        return notificationRepository.save(notification);
+    public Notification createNotification(Long accountId, Notification notification) {
+        return notificationRepository.findById(accountId).map(account -> {
+            notification.setAccount(account);
+            return notificationRepository.save(notification);
+        }).orElseThrow(() -> new ResourceNotFoundException("Account", "Id", accountId));
     }
 
     @Override
-    public Notification updateNotification(Long notificationId, Notification notificationRequest) {
+    public Notification updateNotification(Long accountId, Long notificationId, Notification notificationRequest) {
         Notification notification = notificationRepository.findById(notificationId)
                 .orElseThrow(() -> new ResourceNotFoundException("Notification", "Id", notificationId));
         notification.setDetail(notificationRequest.getDetail());
@@ -61,11 +65,13 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
     @Override
-    public ResponseEntity<?> deleteNotification(Long notificationId) {
-        Notification notification = notificationRepository.findById(notificationId)
-                .orElseThrow(() -> new ResourceNotFoundException("Notification", "Id", notificationId));
-        notificationRepository.delete(notification);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<?> deleteNotification(Long notificationId,Long accountId) {
+        return notificationRepository.findByIdAndAccountId(notificationId, accountId).map(request -> {
+            notificationRepository.delete(request);
+            return ResponseEntity.ok().build();
+        }).orElseThrow(() -> new ResourceNotFoundException(
+                "Notification not found with Id " + notificationId + " AccountId " + accountId + "and InternshipId"
+        ));
     }
 
 }

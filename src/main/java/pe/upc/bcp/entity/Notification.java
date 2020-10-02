@@ -30,4 +30,7 @@ public class Notification{
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Account account;
+
+    public void setAccount(Notification account) {
+    }
 }
